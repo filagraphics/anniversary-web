@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f8f5f0;
+  --color-cream: #f1e9de;
+  --color-rose: #c99a9b;
+  --color-rose-deep: #a8767a;
+  --color-mocha: #8a7465;
+  --color-mocha-deep: #6b5a4e;
+  --color-ink: #302a28;
+  --color-night: #1f1b1a;
+
+  --font-serif: "Playfair Display", "Noto Serif Ethiopic", "Iowan Old Style", Georgia, serif;
+  --font-sans: "DM Sans", "Noto Sans Ethiopic", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-hand: "Caveat", "Noto Serif Ethiopic", "Segoe Script", "Bradley Hand", cursive;
+  /* Amharic (Ge'ez script) */
+  --font-amharic: "Noto Serif Ethiopic", "Nyala", "Abyssinica SIL", serif;
+
+  --shadow-soft: 0 1px 2px rgb(48 42 40 / 0.04), 0 12px 32px -12px rgb(48 42 40 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(48 42 40 / 0.06), 0 24px 48px -16px rgb(48 42 40 / 0.28);
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(0, -22px, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrapbook spreads: portrait screens stack, landscape screens compose. */
+.spread {
+  display: grid;
+  height: 100%;
+  gap: clamp(0.9rem, 2.4vw, 2rem);
+}
+.spread-1 {
+  grid-template-areas: "a";
+  padding-inline: 4%;
+}
+.spread-2 {
+  grid-template-areas: "a" "b";
+  grid-template-rows: 1fr 1fr;
+}
+.spread-3 {
+  grid-template-areas: "a a" "b c";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.15fr 1fr;
+}
+.spread-4 {
+  grid-template-areas: "a b" "c d";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+@media (min-aspect-ratio: 1/1) {
+  .spread-1 {
+    padding-inline: 22%;
+  }
+  .spread-2 {
+    grid-template-areas: "a b";
+    grid-template-columns: 1.25fr 1fr;
+    grid-template-rows: 1fr;
+    padding-inline: 4%;
+  }
+  .spread-3 {
+    grid-template-areas: "a b" "a c";
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .spread-4 {
+    grid-template-areas: "a b c" "a d d";
+    grid-template-columns: 1.15fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(201 154 155 / 0.35);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rose-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Paper texture used by the letter and some cards. */
+.paper-texture {
+  background-color: #fbf7f1;
+  background-image:
+    radial-gradient(rgb(138 116 101 / 0.06) 1px, transparent 1px),
+    radial-gradient(rgb(138 116 101 / 0.04) 1px, transparent 1px);
+  background-size:
+    22px 22px,
+    13px 13px;
+  background-position:
+    0 0,
+    7px 9px;
+}
+
+.letter-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(2.25rem - 1px),
+    rgb(138 116 101 / 0.12) calc(2.25rem - 1px),
+    rgb(138 116 101 / 0.12) 2.25rem
+  );
+}
+
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--color-cream) 30%,
+    #f7f1e8 50%,
+    var(--color-cream) 70%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Film grain overlay for cinematic sections. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
