@@ -248,8 +248,8 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
             </motion.p>
           )}
           <motion.p {...item(0.2)} className="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-paper/80">
-            Chapter {chapter.number} · <span lang="am" className="font-amharic tracking-[0.12em]">ምዕራፍ {chapter.number}</span> ·{" "}
-            {chapter.period}
+            Chapter {chapter.number} · <span lang="am" className="font-amharic tracking-[0.12em]">ምዕራፍ {chapter.number}</span>
+            {chapter.period && <> · {chapter.period}</>}
           </motion.p>
           <motion.h2 {...item(0.35)} className="mt-3 font-serif text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
             {chapter.title}

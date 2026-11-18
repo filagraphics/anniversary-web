@@ -3,9 +3,9 @@ import type { Chapter } from "@/lib/types";
 /**
  * The three chapters of the story.
  *
- * Edit titles, captions, descriptions and placeholder periods here.
- * `period` values are placeholders on purpose: replace "Year One" etc. with
- * real years (e.g. "2019 – 2020") whenever you like.
+ * Edit titles, captions and descriptions here.
+ * `period` is optional: leave it out and the cover and journey page show
+ * only the chapter number.
  */
 export const chapters: Chapter[] = [
   {
@@ -46,7 +46,6 @@ export const chapters: Chapter[] = [
     title: "Little Moments, Big Memories",
     titleAm: "ትናንሽ ጊዜያት፣ ትልልቅ ትዝታዎች",
     milestone: "The Adventures",
-    period: "Years Two – Four",
     caption:
       "It was never just about the places we visited, but the moments we collected along the way.",
     description:
@@ -86,7 +85,6 @@ export const chapters: Chapter[] = [
     title: "Moments Worth Keeping",
     titleAm: "ሊጠበቁ የሚገባቸው ጊዜያት",
     milestone: "The Promise Ring",
-    period: "Years Five – Six",
     caption: "Our first anniversary: a little ring, and a promise given with all my heart.",
     description:
       "ህዳር 19, our first anniversary. A little ring, and a promise made with all my heart. Whatever came after, that smile is a moment worth keeping, and so is every celebration, favourite photograph and golden evening we shared.",

@@ -12,8 +12,8 @@ export interface Chapter {
   titleAm?: string;
   /** Short label used in the timeline, e.g. "The Beginning". */
   milestone: string;
-  /** Placeholder period. Replace with your own years, e.g. "2019 – 2020". */
-  period: string;
+  /** Optional period shown next to the chapter number, e.g. "2019 – 2020". */
+  period?: string;
   /** Handwritten-style introductory caption. */
   caption: string;
   description: string;

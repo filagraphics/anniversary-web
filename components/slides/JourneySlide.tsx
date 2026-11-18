@@ -84,7 +84,8 @@ export default function JourneySlide({ targets }: { targets: Record<string, numb
               </button>
               <div>
                 <p className="text-[0.66rem] font-medium uppercase tracking-[0.26em] text-mocha-deep">
-                  Chapter {chapter.number} · {chapter.period}
+                  Chapter {chapter.number}
+                  {chapter.period && <> · {chapter.period}</>}
                 </p>
                 <h3 className="mt-1 font-serif text-[1.45rem] leading-tight sm:text-[1.7rem]">{chapter.milestone}</h3>
                 {chapter.titleAm && (
