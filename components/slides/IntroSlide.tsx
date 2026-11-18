@@ -6,6 +6,7 @@ import { hero } from "@/data/messages";
 import { asset } from "@/lib/asset";
 import { useParallax, useSlide } from "../deck/DeckContext";
 import SafeImage from "../ui/SafeImage";
+import IntroClip from "./IntroClip";
 import Motes from "./Motes";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -59,6 +60,7 @@ export default function IntroSlide() {
               <span className="font-amharic text-xs text-mocha-deep sm:text-sm">{hero.ctaAm}</span>
             </figcaption>
           </motion.figure>
+          {hero.video && <IntroClip clip={hero.video} />}
         </motion.div>
 
         {/* The words */}

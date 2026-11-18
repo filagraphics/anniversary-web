@@ -4,13 +4,13 @@
  */
 
 export const site = {
-  title: "Six Years of Memories",
+  title: "Our Memories",
   description: "A private collection of six years of little moments and memories worth keeping.",
 };
 
 export const hero = {
   eyebrow: "Six Years. Countless Moments. A Story Worth Remembering.",
-  title: "Six Years of Memories",
+  title: "Our Memories 😘",
   subtitle: "Some moments deserve to live forever.",
   supporting:
     "A collection of little moments, beautiful places, unexpected adventures, and memories worth keeping.",
@@ -21,10 +21,14 @@ export const hero = {
   imageAlt: "The two of us smiling on a pink swing under a neon sign that reads Great Moments",
   /** Little handwritten note on the cover print. */
   imageNote: "Great moments",
+  /** A short clip tucked against the cover print, playing silently on a loop. */
+  video: {
+    src: "/videos/cover-gown.mp4",
+    poster: "/videos/posters/cover-gown.jpg",
+    title: "Like a princess",
+  },
 
   // Amharic (አማርኛ) lines shown alongside the English.
-  titleAm: "የስድስት ዓመት ትዝታዎች",
-  subtitleAm: "አንዳንድ ጊዜያት ለዘላለም ሊኖሩ ይገባቸዋል።",
   ctaAm: "ትዝታዎቻችን",
 };
 

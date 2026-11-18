@@ -21,6 +21,38 @@ export interface Chapter {
   timelineNote: string;
   cover: string;
   coverAlt: string;
+  /**
+   * For portrait cover photos: a pre-blurred copy. On wide screens the sharp
+   * photo then sits on one side, glowing over its own blurred light.
+   */
+  coverBlur?: string;
+  /**
+   * Shape of the cover photo when `coverBlur` is set:
+   * "portrait" (default) -> sharp side panel on wide screens;
+   * "wide" -> sharp band across the top on tall screens (phones).
+   */
+  coverShape?: "portrait" | "wide";
+  /** Where the cover text sits. Defaults by theme (paper: left, light: topRight, dark: center). */
+  coverAlign?: "left" | "right" | "topRight" | "center";
+  /** CSS object-position for the cover, e.g. "45% 50%", to keep faces in frame. */
+  coverPosition?: string;
+  /**
+   * Optional celebration touches on the cover: a gold badge above the title,
+   * twinkling stars, and a sparkle on one point of the photo (in its pixels).
+   * The glint lines up when `coverPosition` is "50% 50%" (the default).
+   */
+  celebrate?: {
+    badge: string;
+    badgeAm?: string;
+    glint?: { x: number; y: number; width: number; height: number };
+  };
+  /** Optional little keepsake print taped onto the chapter cover. */
+  keepsake?: Keepsake;
+  /**
+   * Optional short clips taped onto the chapter cover as little "video prints".
+   * They play silently on a loop while the cover is on screen; tap to enlarge.
+   */
+  coverClips?: CoverClip[];
   /** Small image used on the timeline. */
   timelineImage: string;
   theme: ChapterTheme;
@@ -28,6 +60,44 @@ export interface Chapter {
   highlights: string[];
   /** Optional handwritten note shown at the end of the chapter. */
   closingNote?: string;
+  /**
+   * Optional headings for scrapbook pages, keyed by page number (1 = first).
+   * On wide screens a page with a heading becomes a "hero" page: its first
+   * photo as one big print, the heading beside it, the rest fanned below.
+   */
+  spreadPages?: Record<number, SpreadPage>;
+}
+
+export interface SpreadPage {
+  /** Small label above the heading, e.g. "Graduation day". */
+  eyebrow?: string;
+  title: string;
+  titleAm?: string;
+  /** Optional handwritten line under the heading. */
+  note?: string;
+}
+
+export interface CoverClip {
+  /** An .mp4 (H.264) in public/videos/. */
+  src: string;
+  /** A still frame shown while the clip loads. */
+  poster: string;
+  /** Short handwritten label under the clip. */
+  title: string;
+}
+
+export interface Keepsake {
+  image: string;
+  thumbnail?: string;
+  title: string;
+  titleAm?: string;
+  /** Free text, e.g. "ህዳር 29, 2012 ዓ.ም.". */
+  date: string;
+  /** Optional short handwritten line on the print (and its Amharic version). */
+  note?: string;
+  noteAm?: string;
+  caption: string;
+  alt: string;
 }
 
 export type MemoryCategory =
@@ -60,6 +130,13 @@ export interface Memory {
    * instead of placing it on a scrapbook spread.
    */
   featured?: boolean;
+  /**
+   * Optional: pin this photo to a specific scrapbook page of its chapter
+   * (1 = first page). Up to 7 photos per page; unpinned photos fill later pages.
+   */
+  spread?: number;
+  /** Optional CSS object-position (e.g. "30% 40%") to keep faces in frame when cropped. */
+  position?: string;
   /** Optional intrinsic size: helps the grid reserve space while loading. */
   width?: number;
   height?: number;

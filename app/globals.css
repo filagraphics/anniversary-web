@@ -21,6 +21,26 @@
 
   --animate-float: float 9s ease-in-out infinite;
   --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+  --animate-twinkle: twinkle 2.8s ease-in-out infinite;
+  --animate-sheen: sheen 7s linear infinite;
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.2;
+      transform: scale(0.55) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(45deg);
+    }
+  }
+
+  @keyframes sheen {
+    to {
+      background-position: -200% center;
+    }
+  }
 
   @keyframes float {
     0%,
@@ -59,52 +79,6 @@ body {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-/* Scrapbook spreads: portrait screens stack, landscape screens compose. */
-.spread {
-  display: grid;
-  height: 100%;
-  gap: clamp(0.9rem, 2.4vw, 2rem);
-}
-.spread-1 {
-  grid-template-areas: "a";
-  padding-inline: 4%;
-}
-.spread-2 {
-  grid-template-areas: "a" "b";
-  grid-template-rows: 1fr 1fr;
-}
-.spread-3 {
-  grid-template-areas: "a a" "b c";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1.15fr 1fr;
-}
-.spread-4 {
-  grid-template-areas: "a b" "c d";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-@media (min-aspect-ratio: 1/1) {
-  .spread-1 {
-    padding-inline: 22%;
-  }
-  .spread-2 {
-    grid-template-areas: "a b";
-    grid-template-columns: 1.25fr 1fr;
-    grid-template-rows: 1fr;
-    padding-inline: 4%;
-  }
-  .spread-3 {
-    grid-template-areas: "a b" "a c";
-    grid-template-columns: 1.3fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .spread-4 {
-    grid-template-areas: "a b c" "a d d";
-    grid-template-columns: 1.15fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
 }
 
 body {
@@ -171,6 +145,16 @@ body {
   opacity: 0.08;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Shimmering gold lettering for celebration moments. */
+.gold-sheen {
+  background: linear-gradient(110deg, #c9a25e 0%, #f7e7bd 22%, #d4ad69 45%, #fff3d1 60%, #c9a25e 80%, #f7e7bd 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-sheen);
 }
 
 @media (prefers-reduced-motion: reduce) {
