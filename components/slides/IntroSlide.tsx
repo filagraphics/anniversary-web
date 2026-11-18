@@ -89,16 +89,6 @@ export default function IntroSlide() {
             ))}
           </h1>
 
-          <motion.p
-            lang="am"
-            initial={{ opacity: 0, letterSpacing: "0.3em" }}
-            animate={{ opacity: 1, letterSpacing: "0.04em" }}
-            transition={{ duration: 1.6, delay: 1.4, ease }}
-            className="mt-3 font-amharic text-[1.35rem] text-[#f3d9cf] sm:text-3xl"
-          >
-            {hero.titleAm}
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -106,9 +96,6 @@ export default function IntroSlide() {
             className="mt-4 sm:mt-6"
           >
             <p className="font-hand text-[1.6rem] leading-tight text-paper/90 sm:text-3xl">{hero.subtitle}</p>
-            <p lang="am" className="mt-1 font-amharic text-sm text-paper/60 sm:text-base">
-              {hero.subtitleAm}
-            </p>
           </motion.div>
 
           <motion.p
