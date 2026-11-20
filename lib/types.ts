@@ -53,6 +53,8 @@ export interface Chapter {
    * They play silently on a loop while the cover is on screen; tap to enlarge.
    */
   coverClips?: CoverClip[];
+  /** Optional full page for one clip, shown right after the chapter cover. */
+  videoPage?: VideoPage;
   /** Small image used on the timeline. */
   timelineImage: string;
   theme: ChapterTheme;
@@ -60,6 +62,8 @@ export interface Chapter {
   highlights: string[];
   /** Optional handwritten note shown at the end of the chapter. */
   closingNote?: string;
+  /** Background photo for the closing note page. Defaults to the chapter's last photo. */
+  closingNoteImage?: string;
   /**
    * Optional headings for scrapbook pages, keyed by page number (1 = first).
    * On wide screens a page with a heading becomes a "hero" page: its first
@@ -84,6 +88,19 @@ export interface CoverClip {
   poster: string;
   /** Short handwritten label under the clip. */
   title: string;
+}
+
+export interface VideoPage {
+  clip: CoverClip;
+  /** Small label above the title. */
+  eyebrow?: string;
+  /** Big serif title; the last word is set in italics. */
+  title: string;
+  titleAm?: string;
+  /** Handwritten line under the title. */
+  note?: string;
+  /** Optional small taped prints around the video. */
+  photos?: Companion[];
 }
 
 export interface Keepsake {
@@ -140,16 +157,17 @@ export interface Memory {
   /** Optional intrinsic size: helps the grid reserve space while loading. */
   width?: number;
   height?: number;
+  /** Featured photos only: small prints taped beside it. */
+  companions?: Companion[];
 }
 
-export interface VideoMemory {
-  id: string;
-  chapter?: ChapterId;
+export interface Companion {
+  image: string;
+  thumbnail?: string;
+  /** Handwritten label on the print. */
   title: string;
   caption: string;
-  date: string;
-  src: string;
-  poster: string;
-  /** Set to true for a clearly marked placeholder without a real file. */
-  placeholder?: boolean;
+  alt: string;
+  /** CSS object-position for the small cropped print. */
+  position?: string;
 }

@@ -222,28 +222,34 @@ export default function SpreadSlide({ chapter, memories, chapterMemories, spread
     return () => ro.disconnect();
   }, []);
   const frame = box.w >= 640 ? frames.large : frames.small;
+
+  // Pages with a heading become a hero page (2–5 photos): side by side on wide
+  // screens, stacked on tall ones. With more photos, the heading sits above the collage.
+  const page = chapter.spreadPages?.[spread];
+  const heroW = Math.min(box.w, 1440);
+  const wideBox = box.h > 0 && heroW / box.h >= 1.25;
+  // On tall screens the hero row gets too small past four photos.
+  const heroFits = memories.length >= 2 && memories.length <= (wideBox ? 5 : 4);
+  const titled = !!page && !heroFits;
+  const headingH = titled ? (box.w >= 640 ? (page?.note ? 132 : 96) : page?.note ? 112 : 76) : 0;
   const rows = useMemo(
     () =>
       collageLayout(
         memories.map((m) => (m.width && m.height ? m.width / m.height : 4 / 3)),
         Math.min(box.w, 1180),
-        box.h,
+        box.h - headingH,
         frame,
       ),
-    [memories, box.w, box.h, frame],
+    [memories, box.w, box.h, headingH, frame],
   );
 
-  // Pages with a heading become a hero page: side by side on wide screens,
-  // stacked on tall ones.
-  const page = chapter.spreadPages?.[spread];
-  const heroW = Math.min(box.w, 1440);
   const hero = useMemo(() => {
-    if (!page || memories.length < 2 || memories.length > 5 || box.w <= 0 || box.h <= 0) return null;
+    if (!page || !heroFits || box.w <= 0 || box.h <= 0) return null;
     const aspects = memories.map((m) => (m.width && m.height ? m.width / m.height : 4 / 3));
-    return heroW / box.h >= 1.25
+    return wideBox
       ? heroLayout(aspects, heroW, box.h, frame)
       : heroLayoutTall(aspects, Math.min(box.w, 560), box.h, frame);
-  }, [page, memories, heroW, box.w, box.h, frame]);
+  }, [page, heroFits, wideBox, memories, heroW, box.w, box.h, frame]);
 
   const openMemory = (memory: Memory) => setOpen(chapterMemories.findIndex((m) => m.id === memory.id));
   const fade = (delay: number) => ({
@@ -376,7 +382,37 @@ export default function SpreadSlide({ chapter, memories, chapterMemories, spread
               </div>
             );
           })()
-        ) : rows.map((row, r) => (
+        ) : (
+          <>
+            {titled && page && (
+              <div style={{ height: headingH - frame.gap }} className="flex shrink-0 flex-col items-center justify-end text-center">
+                {page.eyebrow && (
+                  <motion.p
+                    {...fade(0.2)}
+                    className={`text-[0.6rem] font-medium uppercase tracking-[0.3em] sm:text-[0.68rem] ${dark ? "text-rose" : "text-rose-deep"}`}
+                  >
+                    {page.eyebrow}
+                  </motion.p>
+                )}
+                <motion.h3 {...fade(0.3)} className="mt-1 font-serif text-[1.9rem] leading-none tracking-tight sm:mt-2 sm:text-5xl">
+                  {page.title}
+                  {page.titleAm && (
+                    <span lang="am" className={`ml-3 font-amharic text-lg ${dark ? "text-paper/70" : "text-mocha-deep"}`}>
+                      {page.titleAm}
+                    </span>
+                  )}
+                </motion.h3>
+                {page.note && (
+                  <motion.p
+                    {...fade(0.4)}
+                    className={`mt-1.5 max-w-[22rem] font-hand text-base leading-snug sm:mt-2 sm:max-w-none sm:text-2xl ${dark ? "text-[#f3d9cf]" : "text-mocha-deep"}`}
+                  >
+                    {page.note}
+                  </motion.p>
+                )}
+              </div>
+            )}
+            {rows.map((row, r) => (
           <div key={r} style={{ gap: frame.gap }} className="flex items-start justify-center">
             {row.map((cell) => {
               const memory = memories[cell.index];
@@ -396,6 +432,8 @@ export default function SpreadSlide({ chapter, memories, chapterMemories, spread
             })}
           </div>
         ))}
+          </>
+        )}
       </div>
 
       <PhotoLightbox memories={chapterMemories} index={open} onClose={() => setOpen(null)} onNavigate={setOpen} />

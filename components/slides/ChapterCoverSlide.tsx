@@ -222,7 +222,7 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
         <KeepsakePrint
           keepsake={chapter.keepsake}
           chapter={chapter.id}
-          placement={layoutKey === "right" ? "corner" : "seam"}
+          placement={chapter.coverClips ? "low" : layoutKey === "right" ? "corner" : "seam"}
         />
       )}
 

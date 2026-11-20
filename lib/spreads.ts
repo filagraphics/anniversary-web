@@ -5,8 +5,8 @@
  * MAX_PINNED per page). The rest are grouped in threes after them, and a lonely last photo
  * joins the previous page.
  */
-/** Pinned pages hold up to this many prints (layouts exist for 1–7). */
-export const MAX_PINNED = 7;
+/** Pinned pages hold up to this many prints. */
+export const MAX_PINNED = 9;
 
 export function chunkIntoSpreads<T extends { spread?: number }>(items: T[]): T[][] {
   const pinned = new Map<number, T[]>();

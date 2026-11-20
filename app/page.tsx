@@ -1,5 +1,4 @@
 import Deck, { type SlideSpec } from "@/components/deck/Deck";
-import MemoryUpload from "@/components/MemoryUpload";
 import MotionProvider from "@/components/MotionProvider";
 import ChapterCoverSlide from "@/components/slides/ChapterCoverSlide";
 import ClosingSlide from "@/components/slides/ClosingSlide";
@@ -9,7 +8,7 @@ import JourneySlide from "@/components/slides/JourneySlide";
 import NoteSlide from "@/components/slides/NoteSlide";
 import ScrollSlide from "@/components/slides/ScrollSlide";
 import SpreadSlide from "@/components/slides/SpreadSlide";
-import VideosSlide from "@/components/slides/VideosSlide";
+import VideoPageSlide from "@/components/slides/VideoPageSlide";
 import SpecialLetter from "@/components/SpecialLetter";
 import { chapters } from "@/data/chapters";
 import { getMemoriesByChapter } from "@/data/memories";
@@ -39,6 +38,15 @@ function buildSlides(): SlideSpec[] {
       group: chapter.id,
       content: <ChapterCoverSlide chapter={chapter} />,
     });
+    if (chapter.videoPage) {
+      chapterSlides.push({
+        id: `${chapter.id}-video`,
+        tone: "dark",
+        label,
+        group: chapter.id,
+        content: <VideoPageSlide chapter={chapter} page={chapter.videoPage} />,
+      });
+    }
     chapterMemories
       .filter((m) => m.featured)
       .forEach((memory) =>
@@ -77,7 +85,7 @@ function buildSlides(): SlideSpec[] {
           <NoteSlide
             eyebrow={`Chapter ${chapter.number} · A little note`}
             note={chapter.closingNote}
-            image={chapterMemories.at(-1)?.image ?? chapter.cover}
+            image={chapter.closingNoteImage ?? chapterMemories.at(-1)?.image ?? chapter.cover}
           />
         ),
       });
@@ -94,18 +102,6 @@ function buildSlides(): SlideSpec[] {
       content: <JourneySlide targets={chapterTargets} />,
     },
     ...chapterSlides,
-    { id: "videos", tone: "light", label: sections.videos.eyebrow, group: "videos", content: <VideosSlide /> },
-    {
-      id: "remember",
-      tone: "light",
-      label: sections.remember.title,
-      group: "remember",
-      content: (
-        <ScrollSlide className="bg-paper">
-          <MemoryUpload />
-        </ScrollSlide>
-      ),
-    },
     {
       id: "letter",
       tone: "light",
@@ -122,7 +118,7 @@ function buildSlides(): SlideSpec[] {
       tone: "dark",
       label: "The last page",
       group: "closing",
-      content: <ClosingSlide image="/memories/chapter-03/photo-02.jpg" />,
+      content: <ClosingSlide image="/memories/chapter-02/dubai-10.jpg" />,
     },
   ];
 }

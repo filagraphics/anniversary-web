@@ -23,6 +23,9 @@ const placements = {
     "[@media(min-aspect-ratio:1/1)_and_(min-height:800px)]:top-[3%] [@media(min-aspect-ratio:1/1)_and_(min-height:800px)]:w-[8vw] [@media(min-aspect-ratio:1/1)_and_(min-height:800px)]:min-w-[110px] " +
     // shorter wide screens (laptops): a little smaller and higher
     "[@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:top-[3%] [@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:w-[8vw] [@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:min-w-[105px]",
+  /** For covers that already carry clips: mid-left on phones, low in the seam on wide screens. */
+  low:
+    "top-[29%] right-3 w-[21vw] max-w-[100px] [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:top-[27%] [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:w-[18vw] [@media(min-aspect-ratio:1/1)]:top-auto [@media(min-aspect-ratio:1/1)]:right-auto [@media(min-aspect-ratio:1/1)]:bottom-[13%] [@media(min-aspect-ratio:1/1)]:left-[max(47%,690px)] [@media(min-aspect-ratio:1/1)]:w-[10vw] [@media(min-aspect-ratio:1/1)]:max-w-[180px] [@media(min-aspect-ratio:1/1)]:min-w-[115px]",
 } as const;
 
 export default function KeepsakePrint({
@@ -37,7 +40,12 @@ export default function KeepsakePrint({
   const { seen, near } = useSlide();
   const [open, setOpen] = useState<number | null>(null);
   const x = useParallax(-0.08);
-  const shortHide = placement === "corner" ? "[@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:hidden" : "";
+  const shortHide =
+    placement === "corner"
+      ? "[@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:hidden"
+      : placement === "low"
+        ? "[@media(max-aspect-ratio:1/1)]:hidden" // phones: just the photo and its name
+        : "";
 
   return (
     <>
@@ -91,7 +99,7 @@ export default function KeepsakePrint({
                 {keepsake.noteAm}
               </span>
             )}
-            <span lang="am" className="mt-1 block font-amharic text-[0.55rem] tracking-wide text-mocha-deep sm:text-[0.66rem]">
+            <span lang="am" className={`mt-1 block font-amharic text-[0.55rem] tracking-wide text-mocha-deep sm:text-[0.66rem] ${placement === "low" ? shortHide : ""}`}>
               {keepsake.date}
             </span>
           </span>

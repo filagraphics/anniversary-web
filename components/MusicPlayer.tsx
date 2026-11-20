@@ -6,20 +6,47 @@ import { useEffect, useRef, useState } from "react";
 import { music } from "@/data/messages";
 import { asset } from "@/lib/asset";
 
+/** Events that count as a user gesture, so the browser lets sound play. */
+const GESTURES = ["pointerdown", "pointerup", "touchend", "keydown", "click"] as const;
+
 /**
- * A small, optional music toggle. Never autoplays; the state lives only in
- * memory, so it resets when the page is closed or reloaded.
+ * Background music, on a loop. It starts as soon as the page opens; browsers
+ * that block sound until the visitor interacts start it on the first tap,
+ * click or key press instead. Once paused with the button it stays paused.
  */
 export default function MusicPlayer({ tone = "light" }: { tone?: "light" | "dark" }) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState(false);
+  /** Set once the visitor pauses the music themselves: no more auto-starting. */
+  const pausedByUser = useRef(false);
   const dark = tone === "dark";
 
-  // Pause the music whenever a video starts, so they never overlap.
+  // Start on open, or on the first gesture if the browser blocks autoplay.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.5;
+
+    const stop = () => GESTURES.forEach((g) => window.removeEventListener(g, start, true));
+    const start = (e?: Event) => {
+      // A tap on the music button is handled by the button itself.
+      if (e?.target instanceof Node && buttonRef.current?.contains(e.target)) return;
+      if (pausedByUser.current || !audio.paused) return stop();
+      audio.play().then(stop, () => {}); // still blocked: wait for the next gesture
+    };
+
+    GESTURES.forEach((g) => window.addEventListener(g, start, true));
+    start();
+    return stop;
+  }, []);
+
+  // Pause the music whenever a video with sound starts, so they never overlap.
+  // (The silent looping clips on the covers don't count.)
   useEffect(() => {
     const onPlay = (e: Event) => {
-      if (e.target instanceof HTMLVideoElement) audioRef.current?.pause();
+      if (e.target instanceof HTMLVideoElement && !e.target.muted) audioRef.current?.pause();
     };
     document.addEventListener("play", onPlay, true);
     return () => document.removeEventListener("play", onPlay, true);
@@ -29,6 +56,7 @@ export default function MusicPlayer({ tone = "light" }: { tone?: "light" | "dark
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.paused) {
+      pausedByUser.current = false;
       audio.volume = 0.5;
       try {
         await audio.play();
@@ -36,6 +64,7 @@ export default function MusicPlayer({ tone = "light" }: { tone?: "light" | "dark
         setError(true);
       }
     } else {
+      pausedByUser.current = true;
       audio.pause();
     }
   };
@@ -48,12 +77,14 @@ export default function MusicPlayer({ tone = "light" }: { tone?: "light" | "dark
         ref={audioRef}
         src={asset(music.src)}
         loop
-        preload="none"
+        autoPlay
+        preload="auto"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onError={() => setError(true)}
       />
       <button
+        ref={buttonRef}
         type="button"
         onClick={toggle}
         aria-pressed={playing}

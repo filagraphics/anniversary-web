@@ -21,12 +21,6 @@ export const hero = {
   imageAlt: "The two of us smiling on a pink swing under a neon sign that reads Great Moments",
   /** Little handwritten note on the cover print. */
   imageNote: "Great moments",
-  /** A short clip tucked against the cover print, playing silently on a loop. */
-  video: {
-    src: "/videos/cover-gown.mp4",
-    poster: "/videos/posters/cover-gown.jpg",
-    title: "Like a princess",
-  },
 
   // Amharic (አማርኛ) lines shown alongside the English.
   ctaAm: "ትዝታዎቻችን",
@@ -44,20 +38,6 @@ export const sections = {
     eyebrow: "The Memories",
     title: "A photo album, gently kept",
     intro: "Tap any photograph to see it larger. Use the arrow keys or swipe to move between memories.",
-  },
-  videos: {
-    eyebrow: "Video Memories",
-    title: "Moments in motion",
-    intro: "Some memories are better with movement and sound. Press play whenever you're ready.",
-  },
-  remember: {
-    eyebrow: "An open page",
-    title: "Do You Remember This?",
-    intro:
-      "Found a photo or video that belongs here? Add it below, give it a title and a few words, and keep it with the rest.",
-    privacyNote:
-      "Your files never leave this device. Nothing is uploaded or stored on any server. Previews exist only while this page is open, unless you download them as a ZIP.",
-    confirmation: "Thank you for adding another memory to this little collection.",
   },
 };
 

@@ -7,8 +7,15 @@ import { asset } from "@/lib/asset";
 import type { Chapter, Memory } from "@/lib/types";
 import { useParallax, useSlide } from "../deck/DeckContext";
 import PhotoLightbox from "../PhotoLightbox";
+import TapedPrint from "./TapedPrint";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+/** Where companion prints sit on wide screens: right of the photo, then left. */
+const companionSpots = [
+  "[@media(min-aspect-ratio:1/1)]:top-[38%] [@media(min-aspect-ratio:1/1)]:right-[6%]",
+  "[@media(min-aspect-ratio:1/1)]:top-[22%] [@media(min-aspect-ratio:1/1)]:left-[6%]",
+];
 
 /**
  * A single, very special photograph on its own page. The first time you
@@ -25,6 +32,9 @@ export default function FeaturedPhotoSlide({
 }) {
   const { seen, near, reduce } = useSlide();
   const [open, setOpen] = useState<number | null>(null);
+  const [companionOpen, setCompanionOpen] = useState<number | null>(null);
+  const companionX = useParallax(0.3);
+  const companions = memory.companions ?? [];
   const [developed, setDeveloped] = useState(false);
   const [failed, setFailed] = useState(false);
   const printX = useParallax(0.18);
@@ -140,7 +150,39 @@ export default function FeaturedPhotoSlide({
         {memory.caption}
       </motion.p>
 
+      {/* Small companion prints: in a row below the words on phones, either side of the photo on wide screens. */}
+      {companions.length > 0 && (
+        <div className="flex items-start justify-center gap-5 [@media(max-aspect-ratio:1/1)_and_(max-height:680px)]:hidden [@media(min-aspect-ratio:1/1)]:contents">
+          {companions.map((photo, i) => (
+            <motion.div
+              key={photo.image}
+              style={{ x: companionX }}
+              className={`relative w-[30vw] max-w-[130px] [@media(min-aspect-ratio:1/1)]:absolute [@media(min-aspect-ratio:1/1)]:w-[15vw] [@media(min-aspect-ratio:1/1)]:max-w-[240px] [@media(min-aspect-ratio:1/1)]:min-w-[150px] ${companionSpots[i % companionSpots.length]}`}
+            >
+              <TapedPrint photo={photo} tilt={i % 2 ? -5 : 5} delay={2.6 + i * 0.3} position={photo.position} onOpen={() => setCompanionOpen(i)} />
+            </motion.div>
+          ))}
+        </div>
+      )}
+
       <PhotoLightbox memories={chapterMemories} index={open} onClose={() => setOpen(null)} onNavigate={setOpen} />
+      {companions.length > 0 && (
+        <PhotoLightbox
+          memories={companions.map((photo, i) => ({
+            id: `${memory.id}-companion-${i}`,
+            chapter: memory.chapter,
+            title: photo.title,
+            date: memory.date,
+            image: photo.image,
+            caption: photo.caption,
+            category: memory.category,
+            alt: photo.alt,
+          }))}
+          index={companionOpen}
+          onClose={() => setCompanionOpen(null)}
+          onNavigate={setCompanionOpen}
+        />
+      )}
     </div>
   );
 }
