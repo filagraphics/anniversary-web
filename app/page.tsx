@@ -47,17 +47,16 @@ function buildSlides(): SlideSpec[] {
         content: <VideoPageSlide chapter={chapter} page={chapter.videoPage} />,
       });
     }
+    const featuredPage = (memory: (typeof chapterMemories)[number]): SlideSpec => ({
+      id: `${chapter.id}-${memory.id}`,
+      tone,
+      label: memory.title,
+      group: chapter.id,
+      content: <FeaturedPhotoSlide chapter={chapter} memory={memory} chapterMemories={chapterMemories} />,
+    });
     chapterMemories
-      .filter((m) => m.featured)
-      .forEach((memory) =>
-        chapterSlides.push({
-          id: `${chapter.id}-${memory.id}`,
-          tone,
-          label: memory.title,
-          group: chapter.id,
-          content: <FeaturedPhotoSlide chapter={chapter} memory={memory} chapterMemories={chapterMemories} />,
-        }),
-      );
+      .filter((m) => m.featured && m.featuredAt !== "end")
+      .forEach((memory) => chapterSlides.push(featuredPage(memory)));
     spreads.forEach((spread, i) =>
       chapterSlides.push({
         id: `${chapter.id}-spread-${i + 1}`,
@@ -75,6 +74,9 @@ function buildSlides(): SlideSpec[] {
         ),
       }),
     );
+    chapterMemories
+      .filter((m) => m.featured && m.featuredAt === "end")
+      .forEach((memory) => chapterSlides.push(featuredPage(memory)));
     if (chapter.closingNote) {
       chapterSlides.push({
         id: `${chapter.id}-note`,
@@ -86,6 +88,7 @@ function buildSlides(): SlideSpec[] {
             eyebrow={`Chapter ${chapter.number} · A little note`}
             note={chapter.closingNote}
             image={chapter.closingNoteImage ?? chapterMemories.at(-1)?.image ?? chapter.cover}
+            position={chapter.closingNoteImagePosition}
           />
         ),
       });

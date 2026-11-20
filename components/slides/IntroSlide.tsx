@@ -6,8 +6,9 @@ import { hero } from "@/data/messages";
 import { asset } from "@/lib/asset";
 import { useParallax, useSlide } from "../deck/DeckContext";
 import Motes from "./Motes";
+import { ease } from "@/lib/motion";
+import GoldDivider from "../ui/GoldDivider";
 
-const ease = [0.22, 1, 0.36, 1] as const;
 const words = hero.title.split(" ");
 
 /** Small gold corner flourishes for the page frame. */
@@ -128,9 +129,7 @@ export default function IntroSlide() {
             aria-hidden
             className="mt-4 flex items-center justify-center gap-3 [@media(min-aspect-ratio:1/1)]:justify-start"
           >
-            <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#e8c98f]/80" />
-            <span className="size-1.5 rotate-45 bg-[#f3dca6] shadow-[0_0_10px_rgb(243_220_166/0.9)]" />
-            <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#e8c98f]/80" />
+            <GoldDivider />
           </motion.div>
 
           <motion.p

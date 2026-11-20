@@ -9,8 +9,8 @@ import SafeImage from "../ui/SafeImage";
 import CoverClips from "./CoverClips";
 import { CoverSparkles, PhotoGlint } from "./CoverSparkle";
 import KeepsakePrint from "./KeepsakePrint";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { ease } from "@/lib/motion";
+import GoldDivider from "../ui/GoldDivider";
 
 /** Where the words sit, so each chapter opening can feel different. */
 const layouts = {
@@ -59,8 +59,6 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
   const layout = layouts[layoutKey];
   const celebrate = chapter.celebrate;
   const glint = celebrate?.glint;
-  /** On tall screens with a special cover, keep the text to the essentials. */
-  const compact = shape ? "[@media(max-aspect-ratio:1/1)]:hidden" : "";
   /** Wide covers also drop the tags on shorter laptop screens. */
   const chipsShort = shape === "wide" ? "[@media(min-aspect-ratio:1/1)_and_(max-height:799px)]:hidden" : "";
 
@@ -185,7 +183,7 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
           initial={{ opacity: 0, scale: 1.04 }}
           animate={seen ? { opacity: 1, scale: 1 } : undefined}
           transition={{ duration: 1.6, delay: 0.2, ease }}
-          className={`pointer-events-none absolute inset-x-0 top-[28%] -z-10 hidden h-[26%] [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_82%,transparent)] [@media(max-aspect-ratio:1/1)]:block`}
+          className={`pointer-events-none absolute inset-x-0 top-[16%] -z-10 hidden h-[36%] [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_82%,transparent)] [@media(max-aspect-ratio:1/1)]:block`}
         >
           <SafeImage
             src={chapter.cover}
@@ -226,7 +224,7 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
         />
       )}
 
-      <div className={`relative flex h-full px-6 pt-16 pb-32 sm:px-12 sm:pb-36 lg:px-20 ${layout.wrap}`}>
+      <div className={`relative flex h-full px-6 pt-16 pb-32 [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:pb-[6.5rem] [@media(max-aspect-ratio:1/1)_and_(max-height:700px)]:pb-24 sm:px-12 sm:pb-36 lg:px-20 ${layout.wrap}`}>
         <div className={`max-w-xl ${layout.block}`}>
           {celebrate && (
             <motion.p
@@ -251,7 +249,7 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
             Chapter {chapter.number} · <span lang="am" className="font-amharic tracking-[0.12em]">ምዕራፍ {chapter.number}</span>
             {chapter.period && <> · {chapter.period}</>}
           </motion.p>
-          <motion.h2 {...item(0.35)} className="mt-3 font-serif text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+          <motion.h2 {...item(0.35)} className="mt-3 font-serif text-[2.6rem] [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:text-[2.15rem] [@media(max-aspect-ratio:1/1)_and_(max-height:700px)]:text-[1.85rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
             {chapter.title}
           </motion.h2>
           {chapter.titleAm && (
@@ -261,14 +259,12 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
           )}
           {celebrate && (
             <motion.div {...item(0.5)} aria-hidden className={`mt-4 flex items-center gap-3 ${layoutKey === "center" ? "justify-center" : ""}`}>
-              <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#e8c98f]/80" />
-              <span className="size-1.5 rotate-45 bg-[#f3dca6] shadow-[0_0_10px_rgb(243_220_166/0.9)]" />
-              <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#e8c98f]/80" />
+              <GoldDivider />
             </motion.div>
           )}
           <motion.p
             {...item(0.55)}
-            className={`mt-4 font-hand text-[1.65rem] leading-snug sm:text-3xl ${celebrate ? "gold-sheen" : "text-[#f3d9cf]"}`}
+            className={`mt-4 font-hand text-[1.65rem] leading-snug [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:mt-2.5 [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:text-[1.35rem] [@media(max-aspect-ratio:1/1)_and_(max-height:700px)]:text-[1.15rem] sm:text-3xl ${celebrate ? "gold-sheen" : "text-[#f3d9cf]"}`}
           >
             “{chapter.caption}”
           </motion.p>
@@ -284,9 +280,13 @@ export default function ChapterCoverSlide({ chapter }: { chapter: Chapter }) {
           >
             {chapter.description}
           </motion.p>
-          <motion.ul {...item(0.9)} className={`mt-5 flex flex-wrap gap-2 ${layout.chips} ${compact} ${chipsShort}`} aria-label="In this chapter">
+          <motion.ul
+            {...item(0.9)}
+            className={`mt-5 flex flex-wrap gap-2 [@media(max-aspect-ratio:1/1)]:mt-4 [@media(max-aspect-ratio:1/1)]:gap-1.5 ${layout.chips} ${chipsShort}`}
+            aria-label="In this chapter"
+          >
             {chapter.highlights.map((h) => (
-              <li key={h} className="rounded-full border border-paper/25 bg-night/20 px-3 py-1 text-[0.7rem] tracking-wide text-paper/85 backdrop-blur-sm">
+              <li key={h} className="rounded-full border border-paper/25 bg-night/20 px-3 py-1 [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:px-2.5 [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:py-0.5 text-[0.7rem] [@media(max-aspect-ratio:1/1)_and_(max-height:760px)]:text-[0.64rem] tracking-wide text-paper/85 backdrop-blur-sm">
                 {h}
               </li>
             ))}

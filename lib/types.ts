@@ -57,6 +57,9 @@ export interface Chapter {
   videoPage?: VideoPage;
   /** Small image used on the timeline. */
   timelineImage: string;
+  /** Optional focus point for the timeline image, e.g. "50% 20%", and a zoom (1 = none). */
+  timelinePosition?: string;
+  timelineZoom?: number;
   theme: ChapterTheme;
   /** Little keywords shown under the chapter description. */
   highlights: string[];
@@ -64,6 +67,8 @@ export interface Chapter {
   closingNote?: string;
   /** Background photo for the closing note page. Defaults to the chapter's last photo. */
   closingNoteImage?: string;
+  /** CSS object-position for that photo on phones, to keep faces in view. */
+  closingNoteImagePosition?: string;
   /**
    * Optional headings for scrapbook pages, keyed by page number (1 = first).
    * On wide screens a page with a heading becomes a "hero" page: its first
@@ -75,10 +80,24 @@ export interface Chapter {
 export interface SpreadPage {
   /** Small label above the heading, e.g. "Graduation day". */
   eyebrow?: string;
-  title: string;
+  /** Page heading (not needed when `groups` is set). */
+  title?: string;
   titleAm?: string;
   /** Optional handwritten line under the heading. */
   note?: string;
+  /**
+   * Optional: show the prints as separate groups, each with its own heading
+   * (side by side on wide screens, stacked on phones). Each group takes the
+   * next `count` prints; the last group takes the rest. When set, the page
+   * heading above is not shown.
+   */
+  groups?: SpreadGroup[];
+}
+
+export interface SpreadGroup {
+  title: string;
+  note?: string;
+  count?: number;
 }
 
 export interface CoverClip {
@@ -147,6 +166,8 @@ export interface Memory {
    * instead of placing it on a scrapbook spread.
    */
   featured?: boolean;
+  /** Featured photos only: "end" puts its page after the chapter's scrapbook pages instead. */
+  featuredAt?: "start" | "end";
   /**
    * Optional: pin this photo to a specific scrapbook page of its chapter
    * (1 = first page). Up to 7 photos per page; unpinned photos fill later pages.
@@ -170,4 +191,9 @@ export interface Companion {
   alt: string;
   /** CSS object-position for the small cropped print. */
   position?: string;
+}
+
+/** Show a small print (companion, keepsake-style photo) in the photo viewer. */
+export function asMemory(photo: Companion, base: Pick<Memory, "id" | "chapter" | "date" | "category">): Memory {
+  return { ...base, title: photo.title, image: photo.image, caption: photo.caption, alt: photo.alt };
 }

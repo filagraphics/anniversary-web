@@ -2,17 +2,18 @@
 
 import { motion } from "framer-motion";
 import { Expand } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
-import type { Chapter, VideoPage } from "@/lib/types";
+import { asMemory, type Chapter, type VideoPage } from "@/lib/types";
 import { useParallax, useSlide } from "../deck/DeckContext";
+import { usePlayWhileActive } from "../deck/usePlayWhileActive";
 import PhotoLightbox from "../PhotoLightbox";
 import { ClipViewer } from "./CoverClips";
 import TapedPrint from "./TapedPrint";
 import Motes from "./Motes";
-
-const ease = [0.22, 1, 0.36, 1] as const;
-const STAR = "M0 -10 C1.2 -2.4 2.4 -1.2 10 0 C2.4 1.2 1.2 2.4 0 10 C-1.2 2.4 -2.4 1.2 -10 0 C-2.4 -1.2 -1.2 -2.4 0 -10Z";
+import { ease } from "@/lib/motion";
+import GoldDivider from "../ui/GoldDivider";
+import Star from "../ui/Star";
 
 /** Gold stars twinkling around the video (fixed spots, relative to it). */
 const stars = [
@@ -30,7 +31,7 @@ const stars = [
  * It plays silently on a loop while the page is on screen; tap to enlarge.
  */
 export default function VideoPageSlide({ chapter, page }: { chapter: Chapter; page: VideoPage }) {
-  const { seen, near, isActive, reduce } = useSlide();
+  const { seen, near, reduce } = useSlide();
   const ref = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -42,13 +43,7 @@ export default function VideoPageSlide({ chapter, page }: { chapter: Chapter; pa
   const words = page.title.split(" ");
   const { clip } = page;
 
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    v.muted = true;
-    if (isActive) v.play().catch(() => {});
-    else v.pause();
-  }, [isActive, near]);
+  usePlayWhileActive(ref);
 
   const item = (delay: number) => ({
     initial: { opacity: 0, y: 18 },
@@ -93,22 +88,7 @@ export default function VideoPageSlide({ chapter, page }: { chapter: Chapter; pa
                 className="pointer-events-none absolute -inset-[16%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgb(243_220_166/0.45),rgb(246_207_224/0.25)_55%,transparent)] blur-2xl"
               />
               {stars.map((s, i) => (
-                <svg
-                  key={i}
-                  aria-hidden
-                  viewBox="-10 -10 20 20"
-                  className="pointer-events-none absolute animate-twinkle"
-                  style={{
-                    left: s.left,
-                    top: s.top,
-                    width: s.size,
-                    height: s.size,
-                    animationDelay: `${s.delay}s`,
-                    filter: "drop-shadow(0 0 6px rgb(240 210 150 / 0.9))",
-                  }}
-                >
-                  <path d={STAR} fill="#f7e7bd" />
-                </svg>
+                <Star key={i} delay={s.delay} style={{ left: s.left, top: s.top, width: s.size, height: s.size }} />
               ))}
 
               <button
@@ -197,9 +177,7 @@ export default function VideoPageSlide({ chapter, page }: { chapter: Chapter; pa
             aria-hidden
             className="mt-4 flex items-center justify-center gap-3 [@media(min-aspect-ratio:1/1)]:justify-start"
           >
-            <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#e8c98f]/80" />
-            <span className="size-1.5 rotate-45 bg-[#f3dca6] shadow-[0_0_10px_rgb(243_220_166/0.9)]" />
-            <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#e8c98f]/80" />
+            <GoldDivider />
           </motion.div>
           {page.note && (
             <motion.p {...item(1.4)} className="mt-4 font-hand text-[1.5rem] leading-snug text-[#f3d9cf] sm:text-3xl">
@@ -222,16 +200,9 @@ export default function VideoPageSlide({ chapter, page }: { chapter: Chapter; pa
       <ClipViewer clip={open ? clip : null} onClose={close} />
       {photos.length > 0 && (
         <PhotoLightbox
-          memories={photos.map((photo, i) => ({
-            id: `${chapter.id}-video-photo-${i}`,
-            chapter: chapter.id,
-            title: photo.title,
-            date: page.eyebrow ?? "",
-            image: photo.image,
-            caption: photo.caption,
-            category: "special",
-            alt: photo.alt,
-          }))}
+          memories={photos.map((photo, i) =>
+            asMemory(photo, { id: `${chapter.id}-video-photo-${i}`, chapter: chapter.id, date: page.eyebrow ?? "", category: "special" }),
+          )}
           index={photoOpen}
           onClose={() => setPhotoOpen(null)}
           onNavigate={setPhotoOpen}

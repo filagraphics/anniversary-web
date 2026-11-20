@@ -1,6 +1,6 @@
-/** Gold celebration touches for a chapter cover: twinkling stars and a glint on one spot of the photo. */
+import Star, { STAR_PATH } from "../ui/Star";
 
-const STAR = "M0 -10 C1.2 -2.4 2.4 -1.2 10 0 C2.4 1.2 1.2 2.4 0 10 C-1.2 2.4 -2.4 1.2 -10 0 C-2.4 -1.2 -1.2 -2.4 0 -10Z";
+/** Gold celebration touches for a chapter cover: twinkling stars and a glint on one spot of the photo. */
 
 // Fixed positions so server and client render identically.
 const stars = [
@@ -21,21 +21,12 @@ export function CoverSparkles() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       {stars.map((s, i) => (
-        <svg
+        <Star
           key={i}
-          viewBox="-10 -10 20 20"
-          className="absolute animate-twinkle"
-          style={{
-            left: s.left,
-            top: s.top,
-            width: s.size,
-            height: s.size,
-            animationDelay: `${s.delay}s`,
-            filter: "drop-shadow(0 0 6px rgb(240 210 150 / 0.8))",
-          }}
-        >
-          <path d={STAR} fill="#f3dca6" />
-        </svg>
+          delay={s.delay}
+          color="#f3dca6"
+          style={{ left: s.left, top: s.top, width: s.size, height: s.size }}
+        />
       ))}
     </div>
   );
@@ -64,7 +55,7 @@ export function PhotoGlint({ x, y, width, height }: { x: number; y: number; widt
         <circle r={r * 1.6} fill="url(#glint-glow)" className="animate-twinkle" style={{ transformBox: "fill-box", transformOrigin: "center" }} />
         <g transform={`scale(${r / 10})`}>
           <path
-            d={STAR}
+            d={STAR_PATH}
             fill="#fffaf0"
             className="animate-twinkle"
             style={{ transformBox: "fill-box", transformOrigin: "center", animationDelay: "0.4s" }}

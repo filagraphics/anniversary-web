@@ -6,8 +6,7 @@ import { chapters } from "@/data/chapters";
 import { sections } from "@/data/messages";
 import { useParallax, useSlide } from "../deck/DeckContext";
 import SafeImage from "../ui/SafeImage";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { ease } from "@/lib/motion";
 
 /** "Six years, three chapters" — the timeline, with a jump to each chapter. */
 export default function JourneySlide({ targets }: { targets: Record<string, number> }) {
@@ -75,12 +74,20 @@ export default function JourneySlide({ targets }: { targets: Record<string, numb
                 style={{ rotate: `${[-2, 1.5, -1][i % 3]}deg` }}
                 aria-label={`Open chapter ${chapter.number}: ${chapter.title}`}
               >
-                <SafeImage
-                  src={chapter.timelineImage}
-                  alt=""
-                  loading={near ? "eager" : "lazy"}
-                  className="aspect-square w-full rounded-md object-cover transition-transform duration-700 group-hover:scale-105 md:aspect-[4/3]"
-                />
+                <span className="block overflow-hidden rounded-md">
+                  <span
+                    className="block"
+                    style={{ scale: chapter.timelineZoom ?? 1, transformOrigin: chapter.timelinePosition ?? "50% 50%" }}
+                  >
+                    <SafeImage
+                      src={chapter.timelineImage}
+                      alt=""
+                      loading={near ? "eager" : "lazy"}
+                      style={{ objectPosition: chapter.timelinePosition }}
+                      className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-105 md:aspect-[4/3]"
+                    />
+                  </span>
+                </span>
               </button>
               <div>
                 <p className="text-[0.66rem] font-medium uppercase tracking-[0.26em] text-mocha-deep">

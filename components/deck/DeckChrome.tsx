@@ -44,10 +44,6 @@ export default function DeckChrome({ slides }: { slides: SlideMeta[] }) {
             <span className="tabular-nums">
               {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </span>
-            <span className="hidden sm:inline">
-              <span className="mx-2 opacity-50">·</span>
-              {current.label}
-            </span>
           </p>
           {/* Desktop: one tick per page, grouped by chapter. */}
           <div className="pointer-events-auto hidden items-center sm:flex">

@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { asset } from "@/lib/asset";
 import type { Memory } from "@/lib/types";
 import SafeImage from "./ui/SafeImage";
+import { ease } from "@/lib/motion";
 
 type Props = {
   memories: Memory[];
@@ -130,7 +131,7 @@ export default function PhotoLightbox({ memories, index, onClose, onNavigate }: 
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.45, ease }}
                 drag={count > 1 ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.6}

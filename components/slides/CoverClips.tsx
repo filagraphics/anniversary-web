@@ -8,8 +8,8 @@ import { asset } from "@/lib/asset";
 import type { CoverClip } from "@/lib/types";
 import { useIsClient } from "@/lib/useIsClient";
 import { useParallax, useSlide } from "../deck/DeckContext";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { usePlayWhileActive } from "../deck/usePlayWhileActive";
+import { ease } from "@/lib/motion";
 
 // Class names are written out in full so Tailwind can find them.
 const size =
@@ -54,18 +54,11 @@ const spots = {
 type Spot = (typeof spots)[keyof typeof spots][number];
 
 function ClipPrint({ clip, i, spot, onOpen }: { clip: CoverClip; i: number; spot: Spot; onOpen: () => void }) {
-  const { seen, near, isActive } = useSlide();
+  const { seen, near } = useSlide();
   const ref = useRef<HTMLVideoElement>(null);
   const x = useParallax(spot.depth);
 
-  // Play while this page is on screen, pause when it isn't.
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    v.muted = true; // React doesn't always reflect `muted`, and autoplay needs it.
-    if (isActive) v.play().catch(() => {});
-    else v.pause();
-  }, [isActive, near]);
+  usePlayWhileActive(ref);
 
   return (
     <motion.div style={{ x }} className={`absolute z-10 ${size} ${spot.place}`}>

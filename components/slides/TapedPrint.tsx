@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import type { Companion } from "@/lib/types";
 import { useSlide } from "../deck/DeckContext";
 import SafeImage from "../ui/SafeImage";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { ease } from "@/lib/motion";
 
 /** A small taped print with a handwritten label; tap to open it large. */
 export default function TapedPrint({

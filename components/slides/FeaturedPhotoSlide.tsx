@@ -4,12 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Maximize2 } from "lucide-react";
 import { useState } from "react";
 import { asset } from "@/lib/asset";
-import type { Chapter, Memory } from "@/lib/types";
+import { asMemory, type Chapter, type Memory } from "@/lib/types";
 import { useParallax, useSlide } from "../deck/DeckContext";
 import PhotoLightbox from "../PhotoLightbox";
 import TapedPrint from "./TapedPrint";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { ease } from "@/lib/motion";
 
 /** Where companion prints sit on wide screens: right of the photo, then left. */
 const companionSpots = [
@@ -83,6 +82,7 @@ export default function FeaturedPhotoSlide({
                   loading={near ? "eager" : "lazy"}
                   draggable={false}
                   onError={() => setFailed(true)}
+                  style={{ objectPosition: memory.position }}
                   initial={
                     reduce
                       ? false
@@ -168,16 +168,9 @@ export default function FeaturedPhotoSlide({
       <PhotoLightbox memories={chapterMemories} index={open} onClose={() => setOpen(null)} onNavigate={setOpen} />
       {companions.length > 0 && (
         <PhotoLightbox
-          memories={companions.map((photo, i) => ({
-            id: `${memory.id}-companion-${i}`,
-            chapter: memory.chapter,
-            title: photo.title,
-            date: memory.date,
-            image: photo.image,
-            caption: photo.caption,
-            category: memory.category,
-            alt: photo.alt,
-          }))}
+          memories={companions.map((photo, i) =>
+            asMemory(photo, { id: `${memory.id}-companion-${i}`, chapter: memory.chapter, date: memory.date, category: memory.category }),
+          )}
           index={companionOpen}
           onClose={() => setCompanionOpen(null)}
           onNavigate={setCompanionOpen}

@@ -16,10 +16,10 @@ export const memories: Memory[] = [
     chapter: "chapter-01",
     title: "Our Very First Photo",
     titleAm: "የመጀመሪያ ፎቶዋችን",
-    date: "The very beginning",
+    date: "The very beginning 🫶",
     image: "/memories/chapter-01/first-photo.jpg",
     thumbnail: "/memories/chapter-01/thumbs/first-photo.jpg",
-    caption: "The first one. Every other photo in this book started here.",
+    caption: "The first one. Every other photo in this book started here 🤍.",
     category: "special",
     alt: "Our first photo together: the two of us side by side, both smiling widely",
     featured: true,
@@ -48,7 +48,7 @@ export const memories: Memory[] = [
   {
     id: "memory-020",
     chapter: "chapter-01",
-    title: "Our First Birthday Celebration",
+    title: "🎂 Our First Birthday Celebration 🎂",
     titleAm: "የመጀመሪያው የልደት በዓላችን",
     date: "September 2020",
     image: "/memories/chapter-01/photo-12.jpg",
@@ -64,7 +64,7 @@ export const memories: Memory[] = [
   {
     id: "memory-002",
     chapter: "chapter-01",
-    title: "Ice Cream Days",
+    title: "Ice Cream Days 🍦",
     date: "A sweet afternoon",
     image: "/memories/chapter-01/photo-08.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-08.jpg",
@@ -79,7 +79,7 @@ export const memories: Memory[] = [
   {
     id: "memory-019",
     chapter: "chapter-01",
-    title: "Just Another Workday",
+    title: "Just Another Workday 💼",
     date: "An ordinary day",
     image: "/memories/chapter-01/photo-10.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-10.jpg",
@@ -94,7 +94,7 @@ export const memories: Memory[] = [
   {
     id: "memory-001",
     chapter: "chapter-01",
-    title: "A Sunny Table for Two",
+    title: "A Sunny Table for Two ☀️",
     date: "A sunny afternoon",
     image: "/memories/chapter-01/photo-07.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-07.jpg",
@@ -109,7 +109,7 @@ export const memories: Memory[] = [
   {
     id: "memory-003",
     chapter: "chapter-01",
-    title: "Dinner and Laughter",
+    title: "Dinner and Laughter 🍽️",
     date: "An evening out",
     image: "/memories/chapter-01/photo-09.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-09.jpg",
@@ -120,6 +120,21 @@ export const memories: Memory[] = [
     position: "44% 38%",
     width: 1280,
     height: 720,
+  },
+  {
+    id: "memory-034",
+    chapter: "chapter-01",
+    title: "Bus Ride Smiles 🚌",
+    date: "The early days",
+    image: "/memories/chapter-01/bus-ride.jpg",
+    thumbnail: "/memories/chapter-01/thumbs/bus-ride.jpg",
+    caption: "Squeezed into a bus seat, cheek to cheek, sunshine pouring in.",
+    category: "everyday",
+    alt: "A bright selfie on a bus, her head against his, both smiling widely",
+    spread: 1,
+    position: "50% 45%",
+    width: 1600,
+    height: 900,
   },
   // Page 6 (spread: 2)
   {
@@ -140,7 +155,7 @@ export const memories: Memory[] = [
   {
     id: "memory-025",
     chapter: "chapter-01",
-    title: "Office Hours",
+    title: "Office Hours 💻",
     date: "An ordinary day",
     image: "/memories/chapter-01/photo-18.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-18.jpg",
@@ -170,7 +185,7 @@ export const memories: Memory[] = [
   {
     id: "memory-028",
     chapter: "chapter-01",
-    title: "Hard at Work",
+    title: "Hard at Work 💼",
     date: "A workday",
     image: "/memories/chapter-01/photo-19.jpg",
     thumbnail: "/memories/chapter-01/thumbs/photo-19.jpg",
@@ -185,7 +200,7 @@ export const memories: Memory[] = [
   {
     id: "memory-029",
     chapter: "chapter-01",
-    title: "Sunny Ride",
+    title: "Sunny Ride ☀️",
     date: "Everyday moments",
     image: "/memories/chapter-01/moments-01.jpg",
     thumbnail: "/memories/chapter-01/thumbs/moments-01.jpg",
@@ -200,7 +215,7 @@ export const memories: Memory[] = [
   {
     id: "memory-030",
     chapter: "chapter-01",
-    title: "Café Corner",
+    title: "Café Corner ☕",
     date: "Everyday moments",
     image: "/memories/chapter-01/moments-02.jpg",
     thumbnail: "/memories/chapter-01/thumbs/moments-02.jpg",
@@ -215,7 +230,7 @@ export const memories: Memory[] = [
   {
     id: "memory-031",
     chapter: "chapter-01",
-    title: "Bowling Night",
+    title: "Bowling Night 🎳",
     date: "Everyday moments",
     image: "/memories/chapter-01/moments-03.jpg",
     thumbnail: "/memories/chapter-01/thumbs/moments-03.jpg",
@@ -230,7 +245,7 @@ export const memories: Memory[] = [
   {
     id: "memory-032",
     chapter: "chapter-01",
-    title: "One More Bite",
+    title: "One More Bite 🍨",
     date: "Everyday moments",
     image: "/memories/chapter-01/moments-04.jpg",
     thumbnail: "/memories/chapter-01/thumbs/moments-04.jpg",
@@ -245,7 +260,7 @@ export const memories: Memory[] = [
   {
     id: "memory-033",
     chapter: "chapter-01",
-    title: "Silly Night",
+    title: "Silly Night 🤪",
     date: "Everyday moments",
     image: "/memories/chapter-01/moments-05.jpg",
     thumbnail: "/memories/chapter-01/thumbs/moments-05.jpg",
@@ -263,7 +278,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-01",
     chapter: "chapter-02",
-    title: "Ice Cream Kisses",
+    title: "Ice Cream Kisses 🍦",
     date: "The feeling",
     image: "/memories/kisses/kiss-01.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-01.jpg",
@@ -278,7 +293,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-02",
     chapter: "chapter-02",
-    title: "Front Seat",
+    title: "Front Seat 🚗",
     date: "The feeling",
     image: "/memories/kisses/kiss-02.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-02.jpg",
@@ -293,7 +308,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-03",
     chapter: "chapter-02",
-    title: "Just Because",
+    title: "Just Because 💖",
     date: "The feeling",
     image: "/memories/kisses/kiss-03.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-03.jpg",
@@ -308,7 +323,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-04",
     chapter: "chapter-02",
-    title: "Proud Kiss",
+    title: "Proud Kiss 🎓",
     date: "The feeling",
     image: "/memories/kisses/kiss-04.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-04.jpg",
@@ -323,7 +338,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-05",
     chapter: "chapter-02",
-    title: "Golden Glow",
+    title: "Golden Glow ✨",
     date: "The feeling",
     image: "/memories/kisses/kiss-05.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-05.jpg",
@@ -338,8 +353,8 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-06",
     chapter: "chapter-02",
-    title: "At Home",
-    date: "The feeling",
+    title: "At Home ❤️ My favourite",
+    date: "The feeling ❤️",
     image: "/memories/kisses/kiss-06.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-06.jpg",
     caption: "The quiet, everyday kind of happy.",
@@ -353,7 +368,7 @@ export const memories: Memory[] = [
   {
     id: "memory-kiss-07",
     chapter: "chapter-02",
-    title: "Backseat Kiss",
+    title: "Car Kiss 🚗",
     date: "The feeling",
     image: "/memories/kisses/kiss-07.jpg",
     thumbnail: "/memories/kisses/thumbs/kiss-07.jpg",
@@ -365,11 +380,41 @@ export const memories: Memory[] = [
     width: 1280,
     height: 960,
   },
-  // Page 10 (spread: 2): video calls from our time apart.
+  // Page 10 (spread: 2): my favourite texts, and video calls from our time apart.
+  {
+    id: "memory-message-01",
+    chapter: "chapter-02",
+    title: "I stll wanna kick ur a** 😄",
+    date: "25 November 2023",
+    image: "/memories/chapter-03/message-dear-honny.jpg",
+    thumbnail: "/memories/chapter-03/thumbs/message-dear-honny.jpg",
+    caption: "Me too. Really 😄 ”",
+    category: "special",
+    alt: "A chat message: Dear Honny, you're the love of my life, love you, yours Philly. Her reply: Me too, with a crying face and a yellow heart",
+    spread: 2,
+    position: "50% 50%",
+    width: 1600,
+    height: 880,
+  },
+  {
+    id: "memory-message-02",
+    chapter: "chapter-02",
+    title: "Mearey ❤️",
+    date: "1 September 2021",
+    image: "/memories/chapter-03/message-mi-amor.jpg",
+    thumbnail: "/memories/chapter-03/thumbs/message-mi-amor.jpg",
+    caption: "Her message that I read again and again: my everything, my best friend, my first ever love.",
+    category: "special",
+    alt: "A text from Mi Amor: Phillaye mearey, yene bal, yene abat, yene wendem, yene best friend; you are the best thing that has ever happened to me; you are my first ever love",
+    spread: 2,
+    position: "50% 50%",
+    width: 1077,
+    height: 892,
+  },
   {
     id: "memory-call-01",
     chapter: "chapter-02",
-    title: "Miles Apart",
+    title: "Miles Apart 🌍",
     date: "While we were apart",
     image: "/memories/chapter-03/video-call-01.jpg",
     thumbnail: "/memories/chapter-03/thumbs/video-call-01.jpg",
@@ -384,8 +429,8 @@ export const memories: Memory[] = [
   {
     id: "memory-call-02",
     chapter: "chapter-02",
-    title: "Goodnight Calls",
-    date: "While we were apart",
+    title: "Goodnight Calls ❤️",
+    date: "While we were apart , See this is real love, where couldn't find it again",
     image: "/memories/chapter-03/video-call-02.jpg",
     thumbnail: "/memories/chapter-03/thumbs/video-call-02.jpg",
     caption: "Late-night calls that made the distance feel a little smaller.",
@@ -402,7 +447,7 @@ export const memories: Memory[] = [
   {
     id: "memory-together-01",
     chapter: "chapter-03",
-    title: "Graduation Kiss",
+    title: "Graduation Kiss 🎓",
     date: "Graduation day",
     image: "/memories/chapter-02/together-01.jpg",
     thumbnail: "/memories/chapter-02/thumbs/together-01.jpg",
@@ -417,7 +462,7 @@ export const memories: Memory[] = [
   {
     id: "memory-together-02",
     chapter: "chapter-03",
-    title: "Proud of Us",
+    title: "Proud of Us 🎓",
     date: "Graduation day",
     image: "/memories/chapter-02/together-02.jpg",
     thumbnail: "/memories/chapter-02/thumbs/together-02.jpg",
@@ -432,7 +477,7 @@ export const memories: Memory[] = [
   {
     id: "memory-together-03",
     chapter: "chapter-03",
-    title: "Wrapped in a Hug",
+    title: "Wrapped in a Hug 🤗",
     date: "Graduation day",
     image: "/memories/chapter-02/together-03.jpg",
     thumbnail: "/memories/chapter-02/thumbs/together-03.jpg",
@@ -447,7 +492,7 @@ export const memories: Memory[] = [
   {
     id: "memory-together-04",
     chapter: "chapter-03",
-    title: "All Dressed Up",
+    title: "All Dressed Up ✨",
     date: "A special day",
     image: "/memories/chapter-02/together-04.jpg",
     thumbnail: "/memories/chapter-02/thumbs/together-04.jpg",
@@ -463,7 +508,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-01",
     chapter: "chapter-03",
-    title: "A Kiss on the Water",
+    title: "A Kiss on the Water 💋",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-01.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-01.jpg",
@@ -478,7 +523,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-02",
     chapter: "chapter-03",
-    title: "By the Creek",
+    title: "By the Creek 🌊",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-02.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-02.jpg",
@@ -493,7 +538,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-03",
     chapter: "chapter-03",
-    title: "Over the Edge",
+    title: "Over the Edge 😄",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-03.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-03.jpg",
@@ -508,7 +553,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-04",
     chapter: "chapter-03",
-    title: "Atlantis Beach",
+    title: "Atlantis Beach 🏖️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-04.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-04.jpg",
@@ -538,7 +583,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-06",
     chapter: "chapter-03",
-    title: "At the Souk",
+    title: "At the Souk 🛍️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-06.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-06.jpg",
@@ -553,7 +598,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-07",
     chapter: "chapter-03",
-    title: "Desert Safari",
+    title: "Desert Safari 🏜️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-07.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-07.jpg",
@@ -568,7 +613,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-14",
     chapter: "chapter-03",
-    title: "Under the Palms",
+    title: "Under the Palms 🌴",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-14.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-14.jpg",
@@ -584,7 +629,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-08",
     chapter: "chapter-03",
-    title: "Under the Lights",
+    title: "Under the Lights ✨",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-08.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-08.jpg",
@@ -599,7 +644,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-09",
     chapter: "chapter-03",
-    title: "Burj Khalifa Night",
+    title: "Burj Khalifa Night 🌃",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-09.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-09.jpg",
@@ -614,7 +659,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-10",
     chapter: "chapter-03",
-    title: "Into the Sea",
+    title: "Into the Sea 🌊",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-10.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-10.jpg",
@@ -629,7 +674,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-11",
     chapter: "chapter-03",
-    title: "Lazy River",
+    title: "Lazy River 🏞️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-11.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-11.jpg",
@@ -644,7 +689,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-12",
     chapter: "chapter-03",
-    title: "Night Out",
+    title: "Night Out ❤️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-12.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-12.jpg",
@@ -659,7 +704,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-13",
     chapter: "chapter-03",
-    title: "City by Night",
+    title: "City by Night ❤️",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-13.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-13.jpg",
@@ -675,7 +720,7 @@ export const memories: Memory[] = [
   {
     id: "memory-dubai-15",
     chapter: "chapter-03",
-    title: "Global Village",
+    title: "Global Village 🌍",
     date: "Dubai",
     image: "/memories/chapter-02/dubai-15.jpg",
     thumbnail: "/memories/chapter-02/thumbs/dubai-15.jpg",
@@ -691,8 +736,8 @@ export const memories: Memory[] = [
   {
     id: "memory-valentines-02",
     chapter: "chapter-03",
-    title: "Valentine's Night",
-    date: "Valentine's Day",
+    title: "Valentine's Night ❤️",
+    date: "Valentine's Day ",
     image: "/memories/chapter-02/valentines-02.jpg",
     thumbnail: "/memories/chapter-02/thumbs/valentines-02.jpg",
     caption: "Dressed up and cheek to cheek.",
@@ -706,8 +751,8 @@ export const memories: Memory[] = [
   {
     id: "memory-valentines-01",
     chapter: "chapter-03",
-    title: "A Little Surprise",
-    date: "Valentine's Day",
+    title: "A Little Surprise 💍",
+    date: "Valentine's Day ❤️",
     image: "/memories/chapter-02/valentines-01.jpg",
     thumbnail: "/memories/chapter-02/thumbs/valentines-01.jpg",
     caption: "A ring, one knee, and her hands over the biggest smile.",
@@ -721,7 +766,7 @@ export const memories: Memory[] = [
   {
     id: "memory-valentines-03",
     chapter: "chapter-03",
-    title: "Among the Flowers",
+    title: "Among the Flowers 🌸",
     date: "Valentine's Day",
     image: "/memories/chapter-02/valentines-03.jpg",
     thumbnail: "/memories/chapter-02/thumbs/valentines-03.jpg",
@@ -736,7 +781,7 @@ export const memories: Memory[] = [
   {
     id: "memory-valentines-04",
     chapter: "chapter-03",
-    title: "On the Road",
+    title: "On the Road 🚗",
     date: "Valentine's Day",
     image: "/memories/chapter-02/valentines-04.jpg",
     thumbnail: "/memories/chapter-02/thumbs/valentines-04.jpg",
@@ -751,7 +796,7 @@ export const memories: Memory[] = [
   {
     id: "memory-valentines-05",
     chapter: "chapter-03",
-    title: "By the Pool",
+    title: "By the Pool 🏊‍♂️",
     date: "Valentine's Day",
     image: "/memories/chapter-02/valentines-05.jpg",
     thumbnail: "/memories/chapter-02/thumbs/valentines-05.jpg",
@@ -767,7 +812,7 @@ export const memories: Memory[] = [
   {
     id: "memory-yaya-01",
     chapter: "chapter-03",
-    title: "Side by Side",
+    title: "Side by Side 👫",
     date: "Yaya Village",
     image: "/memories/yaya/yaya-01.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-01.jpg",
@@ -782,7 +827,7 @@ export const memories: Memory[] = [
   {
     id: "memory-yaya-02",
     chapter: "chapter-03",
-    title: "Nest Chair",
+    title: "Nest Chair 🪑",
     date: "Yaya Village",
     image: "/memories/yaya/yaya-02.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-02.jpg",
@@ -797,7 +842,7 @@ export const memories: Memory[] = [
   {
     id: "memory-yaya-03",
     chapter: "chapter-03",
-    title: "Garden Walk",
+    title: "Garden Walk 🌿",
     date: "Yaya Village",
     image: "/memories/yaya/yaya-03.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-03.jpg",
@@ -812,7 +857,7 @@ export const memories: Memory[] = [
   {
     id: "memory-yaya-04",
     chapter: "chapter-03",
-    title: "Under the Trees",
+    title: "Under the Trees 🌳",
     date: "Yaya Village",
     image: "/memories/yaya/yaya-04.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-04.jpg",
@@ -827,7 +872,7 @@ export const memories: Memory[] = [
   {
     id: "memory-yaya-05",
     chapter: "chapter-03",
-    title: "Horseback",
+    title: "Horseback 🐎",
     date: "Yaya Village",
     image: "/memories/yaya/yaya-05.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-05.jpg",
@@ -839,11 +884,26 @@ export const memories: Memory[] = [
     width: 720,
     height: 1280,
   },
+  {
+    id: "memory-yaya-07",
+    chapter: "chapter-03",
+    title: "Piggyback",
+    date: "Yaya Village",
+    image: "/memories/yaya/yaya-07.jpg",
+    thumbnail: "/memories/yaya/thumbs/yaya-07.jpg",
+    caption: "Her arms around my neck, and both of us laughing down the path.",
+    category: "adventure",
+    alt: "A tilted selfie on a hillside path, her hugging him from behind, both laughing",
+    spread: 1,
+    position: "50% 40%",
+    width: 1600,
+    height: 900,
+  },
   // Page 14 (spread: 3): Entoto.
   {
     id: "memory-yaya-06",
     chapter: "chapter-03",
-    title: "Our Names",
+    title: "Our Names 🫶",
     date: "Entoto",
     image: "/memories/yaya/yaya-06.jpg",
     thumbnail: "/memories/yaya/thumbs/yaya-06.jpg",
@@ -858,7 +918,7 @@ export const memories: Memory[] = [
   {
     id: "memory-walk-01",
     chapter: "chapter-03",
-    title: "Over Her Shoulder",
+    title: "Over Her Shoulder 🌬️",
     date: "Entoto",
     image: "/memories/more/walk-01.jpg",
     thumbnail: "/memories/more/thumbs/walk-01.jpg",
@@ -873,7 +933,7 @@ export const memories: Memory[] = [
   {
     id: "memory-walk-02",
     chapter: "chapter-03",
-    title: "Windswept",
+    title: "Windswept ❤️",
     date: "Entoto",
     image: "/memories/more/walk-02.jpg",
     thumbnail: "/memories/more/thumbs/walk-02.jpg",
@@ -888,7 +948,7 @@ export const memories: Memory[] = [
   {
     id: "memory-walk-03",
     chapter: "chapter-03",
-    title: "Among the Eucalyptus",
+    title: "Among the Eucalyptus 🌿",
     date: "Entoto",
     image: "/memories/more/walk-03.jpg",
     thumbnail: "/memories/more/thumbs/walk-03.jpg",
@@ -903,7 +963,7 @@ export const memories: Memory[] = [
   {
     id: "memory-walk-04",
     chapter: "chapter-03",
-    title: "Under the Canopy",
+    title: "Under the Canopy 🌳",
     date: "Entoto",
     image: "/memories/more/walk-04.jpg",
     thumbnail: "/memories/more/thumbs/walk-04.jpg",
@@ -914,6 +974,23 @@ export const memories: Memory[] = [
     position: "55% 40%",
     width: 1280,
     height: 720,
+  },
+  // Our last photo together: its own page at the end of the story (featured, at the end).
+  {
+    id: "memory-last",
+    chapter: "chapter-03",
+    title: "Our Last Photo 🤍",
+    date: "The latest page",
+    image: "/memories/chapter-03/last-photo.jpg",
+    thumbnail: "/memories/chapter-03/thumbs/last-photo.jpg",
+    caption: "The last one, for now. Still smiling, side by side. 🫶",
+    category: "special",
+    alt: "A close selfie at a celebration, him in glasses and a black shirt, her smiling with red lipstick and curly hair",
+    featured: true,
+    featuredAt: "end",
+    position: "46% 40%",
+    width: 1600,
+    height: 746,
   },
 ];
 

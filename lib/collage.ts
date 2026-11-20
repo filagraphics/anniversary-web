@@ -7,6 +7,11 @@
  * (2^(n-1) options, fine for a scrapbook page) and the best-filling one wins.
  */
 
+/** Width ÷ height of a photo, from its stored size (4:3 when unknown). */
+export function aspectOf(photo: { width?: number; height?: number }): number {
+  return photo.width && photo.height ? photo.width / photo.height : 4 / 3;
+}
+
 export type CollageFrame = {
   /** Border around the photo inside the print, px. */
   pad: number;
