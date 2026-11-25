@@ -67,6 +67,9 @@ export const closing = {
 };
 
 export const music = {
-  src: "/audio/background-music.wav",
+  // Small AAC for every modern browser; the original WAV is a last-resort
+  // fallback (only fetched if AAC can't play, e.g. Firefox without codecs).
+  src: "/audio/background-music.m4a",
+  fallback: "/audio/background-music.wav",
   title: "Background music",
 };

@@ -75,14 +75,16 @@ export default function MusicPlayer({ tone = "light" }: { tone?: "light" | "dark
     <>
       <audio
         ref={audioRef}
-        src={asset(music.src)}
         loop
         autoPlay
         preload="auto"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onError={() => setError(true)}
-      />
+      >
+        <source src={asset(music.src)} type="audio/mp4" />
+        <source src={asset(music.fallback)} type="audio/wav" />
+      </audio>
       <button
         ref={buttonRef}
         type="button"
