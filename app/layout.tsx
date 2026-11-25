@@ -9,6 +9,7 @@ import "@fontsource/noto-serif-ethiopic/ethiopic-400.css";
 import "@fontsource/noto-serif-ethiopic/ethiopic-500.css";
 import "@fontsource/noto-sans-ethiopic/ethiopic-400.css";
 import "./globals.css";
+import VisitPing from "@/components/VisitPing";
 import { site } from "@/data/messages";
 
 export const metadata: Metadata = {
@@ -32,7 +33,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body className="bg-night text-ink antialiased">{children}</body>
+      <body className="bg-night text-ink antialiased">
+        <VisitPing />
+        {children}
+      </body>
     </html>
   );
 }
