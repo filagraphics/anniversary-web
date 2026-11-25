@@ -2,8 +2,12 @@
 
 import { useEffect } from "react";
 
-/** The notify endpoint (your Cloudflare Worker URL). Set at build time. */
-const ENDPOINT = process.env.NEXT_PUBLIC_VISIT_PING_URL;
+/**
+ * The notify endpoint (your Cloudflare Worker URL). This URL is not a secret —
+ * the bot token lives in the Worker — so it is safe to bake in as the default.
+ * An env var can still override it (e.g. for a staging endpoint).
+ */
+const ENDPOINT = process.env.NEXT_PUBLIC_VISIT_PING_URL || "https://notify.philipos.dev";
 
 /**
  * Pings a small notify endpoint once per browser session when the site opens,
