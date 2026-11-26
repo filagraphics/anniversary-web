@@ -5,7 +5,7 @@
 
 export const site = {
   title: "Our Memories",
-  description: "A private collection of six years of little moments and memories worth keeping.",
+  description: "A private collection of Many years of little moments and memories worth keeping.",
 };
 
 export const hero = {

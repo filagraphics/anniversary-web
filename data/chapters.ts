@@ -44,11 +44,11 @@ highlights: [
     id: "chapter-02",
     number: "02",
     title: "Moments Worth Keeping",
-    titleAm: "ሊጠበቁ የሚገባቸው ጊዜያት",
+    titleAm: "ሊታወሱ የሚገቡ ትዝታዎቻችን",
     milestone: "The Promise Ring",
     caption: "Our first anniversary: a little ring, and a promise given with all my heart.",
     description:
-      "ህዳር 19 ዓ.ም. our first anniversary. A little ring, and a promise made with all my heart. Whatever came after, that smile is a moment worth keeping, and so is every celebration, favourite photograph and golden evening we shared.",
+      "ህዳር 19 ዓ.ም. our first anniversary. A little ring, and a promise made with all my heart. Whatever came after, that smile is a moment worth keeping, and so is every celebration, Our favourite photo and golden evening we shared.",
     timelineNote: "The promise ring on our first anniversary, and the moments worth keeping.",
     cover: "/images/covers/chapter-03.jpg",
     coverBlur: "/images/covers/chapter-03-blur.jpg",
@@ -87,14 +87,14 @@ highlights: [
           image: "/memories/dream/gown-01.jpg",
           thumbnail: "/memories/dream/thumbs/gown-01.jpg",
           title: "Twirling in white",
-          caption: "The gown filling the whole room, and her smile filling the rest.",
+          caption: "The gown filling the whole room, and your smile filling my heart.",
           alt: "Her in a sweeping white ball gown, smiling in a bridal boutique",
           position: "50% 30%",
         },
         {
           image: "/memories/dream/gown-02.jpg",
           thumbnail: "/memories/dream/thumbs/gown-02.jpg",
-          title: "A tiara smile",
+          title: "A bride smile",
           caption: "A sparkling gown, a little tiara, and the brightest smile.",
           alt: "Her in a sparkling off-shoulder gown and tiara, holding out the skirt",
           position: "50% 20%",
@@ -131,7 +131,7 @@ highlights: [
     timelinePosition: "48% 18%",
     timelineZoom: 1.35,
     theme: "light",
-    highlights: ["The promise ring💍", "Our first anniversary ❤️", "Celebrations ✨", "Golden evenings 💕"],
+    highlights: ["The promise ring💍", "Our first anniversary ❤️", "Our day ✨", "Golden evenings 💕"],
   },
   {
     id: "chapter-03",
@@ -166,12 +166,12 @@ highlights: [
     highlights: ["Trips & travels 🌍", "Birthdays 🎂", "Dinner dates 🍽️", "Beautiful places 🌸"],
     spreadPages: {
       3: {
-        eyebrow: "A day up the mountain",
+        eyebrow: "A day up the mountain 🤍",
         title: "Entoto",
         note: "red rocks, and our names left behind on the hillside.",
       },
       1: {
-        eyebrow: "Our first trip",
+        eyebrow: "Our first trip 🤍",
         title: "Yaya Village",
         note: "The first of many trips, and the one that started them all.",
       },
@@ -188,12 +188,12 @@ highlights: [
       5: {
         eyebrow: "Our Dubai trip ✈️",
         title: "Dubai",
-        note: "Yachts and glass floors, desert sand and turquoise sea. Every day felt like a dream.",
+        note: "Yachts and glass floors, desert sand and turquoise sea. Every day felt like a dream 💛",
       },
       6: {
         eyebrow: "Dubai by Day & night",
         title: "City of lights",
-        note: "Glowing towers and late walks, and you were still my favourite view.",
+        note: "Glowing towers and late walks, and you were still my favourite view 💚",
       },
     },
     // Background photo for the "A little note" page that closes this chapter.
